@@ -56,6 +56,8 @@ public class RegistrationTests extends TestBase{
         app.getUser().openLoginRegistrationForm();
         app.getUser().fillLoginRegistrationForm(email, password);
         app.getUser().submitRegistration();
+        Assert.assertTrue(app.getUser().isErrorMessageFormat());
+        Assert.assertTrue(app.getUser().isAlertPresent());
     }
 
     @AfterMethod
