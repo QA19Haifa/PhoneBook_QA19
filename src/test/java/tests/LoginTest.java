@@ -1,5 +1,6 @@
 package tests;
 
+import model.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -46,6 +47,19 @@ public class LoginTest extends TestBase{
 ////        pause(3000);
 //        Assert.assertTrue(isElementPresent(By.xpath("//*[text()='Sign Out']")));
 //    }
+
+        @Test
+    public void loginPositiveTestUser(){
+            String email = "abc@def.com", password = "$Abcdef12345";
+            User user = new User()
+                    .withEmail(email)
+                    .withPassword(password)
+                    ;
+        app.getUser().openLoginRegistrationForm();
+            app.getUser().fillLoginRegistrationForm(user);
+            app.getUser().submitLogin();
+            Assert.assertTrue(app.getUser().isLogged());
+        }
 
     @Test
     public void loginNegativeTestWrongEmail() {
