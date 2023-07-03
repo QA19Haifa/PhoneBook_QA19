@@ -14,6 +14,7 @@ public class ApplicationManager {
 //    WebDriver wd;
     EventFiringWebDriver wd;
     HelperUser user;
+    HelperContact contact;
 
     public void init(){
 //        wd = new ChromeDriver();
@@ -23,6 +24,7 @@ public class ApplicationManager {
 
         wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         user = new HelperUser(wd);
+        contact = new HelperContact(wd);
     }
 
     public void tearDown() {
@@ -31,5 +33,9 @@ public class ApplicationManager {
 
     public HelperUser getUser() {
         return user;
+    }
+
+    public HelperContact getContact() {
+        return contact;
     }
 }

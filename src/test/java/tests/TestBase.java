@@ -34,7 +34,7 @@ public class TestBase {
 //        wd.quit();
 //    }
         public void stop(){
-        app.tearDown();
+//        app.tearDown();
     }
 
     @BeforeMethod

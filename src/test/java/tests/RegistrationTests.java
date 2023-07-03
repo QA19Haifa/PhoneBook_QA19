@@ -49,6 +49,15 @@ public class RegistrationTests extends TestBase{
 //    }
 
     @Test
+    public void registrationPositiveTest(){
+        int i = (int)(System.currentTimeMillis()/1000)%3600;
+        String email = "abc_" + i + "@def.com", password = "$Abcdef12345";
+        app.getUser().openLoginRegistrationForm();
+        app.getUser().fillLoginRegistrationForm(email, password);
+        app.getUser().submitRegistration();
+    }
+
+    @Test
     public void registrationNegativeTestWrongEmail(){
         int i = (int)(System.currentTimeMillis()/1000)%3600;
         String email = "abc_" + i + "def.com", password = "$Abcdef12345";
