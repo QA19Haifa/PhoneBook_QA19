@@ -19,7 +19,7 @@ public class RegistrationTests extends TestBase{
 //        wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 //    }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void precondition(){
         if(app.getUser().isLogged()){
             app.getUser().logout();
@@ -48,7 +48,7 @@ public class RegistrationTests extends TestBase{
 //        Assert.assertTrue(wd.findElements(By.xpath("//a[@href='/add']")).size() > 0);
 //    }
 
-    @Test
+    @Test(groups = {"sanityGroup", "regressionGroup"})
     public void registrationPositiveTest(){
         int i = (int)(System.currentTimeMillis()/1000)%3600;
         String email = "abc_" + i + "@def.com", password = "$Abcdef12345";
@@ -69,7 +69,7 @@ public class RegistrationTests extends TestBase{
         Assert.assertTrue(app.getUser().isAlertPresent());
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown(){
 
     }

@@ -40,5 +40,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
 *.txt
 *.png

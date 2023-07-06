@@ -15,7 +15,7 @@ public class LoginTest extends TestBase{
 
 //    WebDriver wd;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void precondition(){
         if(app.getUser().isLogged()){
             app.getUser().logout();
@@ -51,7 +51,7 @@ public class LoginTest extends TestBase{
 //        Assert.assertTrue(isElementPresent(By.xpath("//*[text()='Sign Out']")));
 //    }
 
-        @Test
+        @Test(groups = {"smokeGroup", "sanityGroup", "regressionGroup"})
     public void loginPositiveTestUser(){
             String email = "abc@def.com", password = "$Abcdef12345";
             User user = new User()
@@ -87,7 +87,7 @@ public class LoginTest extends TestBase{
         // Assert
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown() {
 
         }

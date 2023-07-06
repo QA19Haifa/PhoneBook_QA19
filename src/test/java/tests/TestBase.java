@@ -1,6 +1,7 @@
 package tests;
 
 import manager.ApplicationManager;
+import org.openqa.selenium.remote.BrowserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterMethod;
@@ -15,9 +16,10 @@ public class TestBase {
     Logger logger = LoggerFactory.getLogger(TestBase.class);
 //    WebDriver wd;
 
-    public static ApplicationManager app = new ApplicationManager();
+    public static ApplicationManager app
+            = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
-    @BeforeSuite
+    @BeforeSuite(alwaysRun = true)
 //    public void init(){
 //        wd = new ChromeDriver();
 //        wd.navigate().to("https://telranedu.web.app/home");
@@ -29,7 +31,7 @@ public class TestBase {
     }
 
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
 //    public void tearDown() {
 //        wd.quit();
 //    }
@@ -37,12 +39,12 @@ public class TestBase {
 //        app.tearDown();
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void startLogger(Method method){
         logger.info("Start test ---> " + method.getName());
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void end(){
         logger.info("=================================");
     }
