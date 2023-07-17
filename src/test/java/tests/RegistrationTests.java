@@ -1,5 +1,7 @@
 package tests;
 
+import manager.ProviderData;
+import model.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -48,12 +50,19 @@ public class RegistrationTests extends TestBase{
 //        Assert.assertTrue(wd.findElements(By.xpath("//a[@href='/add']")).size() > 0);
 //    }
 
-    @Test(groups = {"sanityGroup", "regressionGroup"})
+    @Test(groups = {"sanityGroup", "regressionGroup"}, invocationCount = 3)
     public void registrationPositiveTest(){
         int i = (int)(System.currentTimeMillis()/1000)%3600;
         String email = "abc_" + i + "@def.com", password = "$Abcdef12345";
         app.getUser().openLoginRegistrationForm();
         app.getUser().fillLoginRegistrationForm(email, password);
+        app.getUser().submitRegistration();
+    }
+    @Test(groups = {"sanityGroup", "regressionGroup"}, dataProvider = "dataCSV", dataProviderClass = ProviderData.class)
+    public void registrationPositiveTestCSV(User user){
+        int i = (int)(System.currentTimeMillis()/1000)%3600;
+        app.getUser().openLoginRegistrationForm();
+        app.getUser().fillLoginRegistrationForm(user.getEmail(), user.getPassword());
         app.getUser().submitRegistration();
     }
 

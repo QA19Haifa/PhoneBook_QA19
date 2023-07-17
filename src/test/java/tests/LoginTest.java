@@ -63,6 +63,13 @@ public class LoginTest extends TestBase{
             app.getUser().submitLogin();
             Assert.assertTrue(app.getUser().isLogged());
         }
+        @Test(groups = {"smokeGroup", "sanityGroup", "regressionGroup"})
+    public void loginPositiveTestUserProp(){
+        app.getUser().openLoginRegistrationForm();
+            app.getUser().fillLoginRegistrationForm(app.getEmail(), app.getPassword());
+            app.getUser().submitLogin();
+            Assert.assertTrue(app.getUser().isLogged());
+        }
 
     @Test
     public void loginNegativeTestWrongEmail() {
